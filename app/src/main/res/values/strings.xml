@@ -11,4 +11,6 @@
     <string name="pressure">pressure : </string>
     <string name="latitude">latitude : </string>
     <string name="longitude">longitude : </string>
+
+    <string name="permissions">Please enable location permissions : </string>
 </resources>
