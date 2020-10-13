@@ -1,11 +1,13 @@
 package com.example.test_weather_app.ui.screens
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.test_weather_app.R
+import com.example.test_weather_app.data.WeatherItem
 import kotlinx.android.synthetic.main.weather_item.view.*
 
 class WeatherItemAdapter(
@@ -13,10 +15,11 @@ class WeatherItemAdapter(
     private val itemSelector: ItemSelector
 ) : RecyclerView.Adapter<WeatherItemAdapter.WeatherViewHolder>(){
 
-    private var items = listOf<String>()
+    private var items = listOf<WeatherItem>()
 
-    fun setItems(items: List<String>){
+    fun setItems(items: List<WeatherItem>){
         this.items = items
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherViewHolder {
@@ -33,19 +36,20 @@ class WeatherItemAdapter(
     class WeatherViewHolder(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView){
-        fun bind(item: String, itemSelector: ItemSelector) = with(itemView){
-            itemView.titleTextView.text = item
-            itemView.timeTextView.text = item
-            itemView.temperatureTextView.text = item
+        @SuppressLint("SetTextI18n")
+        fun bind(item: WeatherItem, itemSelector: ItemSelector) = with(itemView){
+            itemView.titleTextView.text = item.timeZone
+            itemView.timeTextView.text = context.getString(R.string.time) + item.time
+            itemView.temperatureTextView.text = context.getString(R.string.temperature) + item.temperature
 
-            itemView.enterArrowBtn.setOnClickListener {
-                itemSelector.onItemSelected("")
+            itemView.setOnClickListener {
+                itemSelector.onItemSelected(item)
             }
 
         }
     }
 
     interface ItemSelector{
-        fun onItemSelected(item: String)
+        fun onItemSelected(item: WeatherItem)
     }
 }

@@ -13,7 +13,7 @@ data class CurrentWeather(
 
 data class Current(
     val clouds: Double,
-    val dew_point: Double,
+    val dew_poDouble: Double,
     val dt: Double,
     val feels_like: Double,
     val humidity: Double,
@@ -30,7 +30,7 @@ data class Current(
 
 data class Daily(
     val clouds: Double,
-    val dew_point: Double,
+    val dew_poDouble: Double,
     val dt: Double,
     val feels_like: FeelsLike,
     val humidity: Double,
@@ -47,7 +47,7 @@ data class Daily(
 
 data class Hourly(
     val clouds: Double,
-    val dew_point: Double,
+    val dew_poDouble: Double,
     val dt: Double,
     val feels_like: Double,
     val humidity: Double,
@@ -61,14 +61,14 @@ data class Hourly(
 )
 
 data class Minutely(
-    val dt: Int,
-    val precipitation: Int
+    val dt: Double,
+    val precipitation: Double
 )
 
 data class Weather(
     val description: String,
     val icon: String,
-    val id: Int,
+    val id: Double,
     val main: String
 )
 

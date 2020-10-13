@@ -14,4 +14,6 @@ interface WeatherServices {
         @Query("lon") lon: Double,
         @Query("appid") appid: String = WEATHER_APP_SECRET_KEY
     ): Deferred<CurrentWeather>
+
+
 }

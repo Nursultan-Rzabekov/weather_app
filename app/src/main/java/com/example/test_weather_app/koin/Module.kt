@@ -10,6 +10,7 @@ import com.example.test_weather_app.data.dataSource.remote.MainRemoteDataSource
 import com.example.test_weather_app.data.dataSource.remote.WeatherServices
 import com.example.test_weather_app.data.repositories.DefaultMainRepository
 import com.example.test_weather_app.ui.screens.MainViewModel
+import com.example.test_weather_app.usecase.usercase.GetAllWeatherTaskUseCase
 import com.example.test_weather_app.usecase.usercase.GetCurrentWeatherUseCase
 import com.example.test_weather_app.utils.Constants
 import com.google.gson.GsonBuilder
@@ -88,8 +89,17 @@ val module = module {
         )
     }
 
+    factory {
+        GetAllWeatherTaskUseCase(
+            itemsRepository = get()
+        )
+    }
+
     viewModel {
-        MainViewModel(getCurrentWeatherUseCase = get())
+        MainViewModel(
+            getCurrentWeatherUseCase = get(),
+            getAllWeatherTaskUseCase = get()
+        )
     }
 
 }

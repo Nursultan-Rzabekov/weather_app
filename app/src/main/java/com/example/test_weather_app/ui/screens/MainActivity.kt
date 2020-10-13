@@ -10,4 +10,7 @@ class MainActivity : StrongActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+
+
 }
